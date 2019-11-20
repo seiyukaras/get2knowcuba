@@ -1,0 +1,107 @@
+{% extends 'core/base.html' %}
+ {% load staticfiles%}
+{% block content %}
+<section class="blog_area single-post-area area-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                   <div class="blog_details">
+                        <h1>{{paquete.titulo}}</h1>
+                        <ul class="blog-info-link mt-3 mb-4">
+                            <li><a href="#"><i class="far fa-user"></i>{{paquete.destinos}}</a></li>
+
+                        </ul>
+                        <div class="feature-img">
+                        <img class="img-fluid" src="{{paquete.fotos_portada.url}}" alt="">
+                    </div>
+                       {{paquete.contenido|safe}}
+                    </div>
+                </div>
+<div class="section-top-border">
+            <div class="row">
+               <div class="col-lg-4 col-sm-6 mt-sm-30 typo-sec">
+                    <h3 class="mb-20 title_color">Incluye</h3>
+                    <div class="">
+                        <ul class="unordered-list">
+                            <li>Fta Keys</li>
+                            <li>For Women Only Your Computer Usage</li>
+                              <li>Dealing With Technical Support 10 Useful Tips</li>
+                            <li>Make Myspace Your Best Designed Space</li>
+                            <li>Cleaning And Organizing Your Computer</li>
+                        </ul>
+                    </div>
+                </div>
+               <div class="col-lg-4 col-sm-6 mt-sm-30 typo-sec">
+                    <h3 class="mb-20 title_color">No Incluye</h3>
+                    <div class="">
+                        <ul class="unordered-list">
+                            <li>Fta Keys</li>
+                            <li>For Women Only Your Computer Usage</li>
+                              <li>Dealing With Technical Support 10 Useful Tips</li>
+                            <li>Make Myspace Your Best Designed Space</li>
+                            <li>Cleaning And Organizing Your Computer</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <div class="navigation-top">
+                    <div class="d-sm-flex justify-content-between text-center">
+                             <div class="comment-form">
+                        <div class="form-group">
+                            <button type="submit" class="button button-contactForm">Start designing my trip</button>
+                        </div>
+                    </form>
+                    </div>
+
+                </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                     <aside class="single_sidebar_widget newsletter_widget">
+                        <h4 class="widget_title">Get2knowCuba</h4>
+
+                        <form action="#">
+                            <div class="form-group">
+                            <div class="media post_item">
+                            <div class="media-body">
+
+                                    <h3>Duration</h3>
+
+                                <p>{{paquete.duracion}} day
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <div class="media-body">
+
+                                    <h4>from</h4>
+
+                                <p>{{paquete.precio}} € <br>
+                                per person
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <div class="media-body">
+
+                                    <h4>Included services</h4>
+
+                                <p>Guide<br>Driver<br>Airport transfer</p>
+                            </div>
+                        </div>
+                            </div>
+                           <button type="submit" class="button button-contactForm">Start designing my trip</button>
+                        </form>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Area end =================-->
+
+<!-- ================ Instargram Area Starts ================= -->  
+{% endblock %}

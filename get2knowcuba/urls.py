@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 
 urlpatterns = [
     path('', include('core.urls')),
     path('about/', include('about.urls')),
-    path('destinos/', include('destinos.urls')),
+    path('destinations/', include('destinos.urls')),
     #Url de Get2knowcuba
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
