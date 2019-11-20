@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import destinations, PaqueteListView
 
 urlpatterns = [
-    path('', views.destinations, name="Destinations"),
-    path('details/', views.details, name="Details"),
+    path('', PaqueteListView.as_view(), name="destinos"),
+    #path('', destinations, name="Destinations"),
+    #path('details/', views.details, name="Details"),
 ]

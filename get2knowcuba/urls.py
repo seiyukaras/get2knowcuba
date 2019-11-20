@@ -16,11 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
 urlpatterns = [
     path('', include('core.urls')),
     path('about/', include('about.urls')),
-    path('destinations/', include('destinos.urls')),
+    path('destinos/', include('destinos.urls')),
     #Url de Get2knowcuba
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
