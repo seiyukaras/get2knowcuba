@@ -14,6 +14,9 @@ class Paquete(models.Model):
     guia = models.BooleanField(('Guide'), blank=True, null=True)
     chofer = models.BooleanField(('Driver'), blank=True,null=True)
     traslado = models.BooleanField(('Airport transfer'), blank=True, null=True)
+    home = models.BooleanField(default=False)
+    round = models.BooleanField(default=False)
+    oferta = models.BooleanField(default=False)
 
     def __str__(self):
         return self.titulo

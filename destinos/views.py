@@ -13,8 +13,3 @@ class PaqueteListView(ListView):
 class PaqueteDetailView(DetailView):
     model = Paquete
 
-def destinations(request):
-    return render(request,"destinos/destination.html")
-
-def details(request):
-    return render(request,"destinos/details.html")
