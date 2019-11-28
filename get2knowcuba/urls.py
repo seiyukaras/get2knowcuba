@@ -19,6 +19,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', include('core.urls')),
+    path('pre', include('billing.urls')),
     path('about/', include('about.urls')),
     path('destinations/', include('destinos.urls')),
     #Url de Get2knowcuba

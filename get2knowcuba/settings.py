@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'destinos',
     'ckeditor',
     'ckeditor_uploader',
+    'billing',
 
 ]
 
