@@ -51,7 +51,7 @@
                     <div class="d-sm-flex justify-content-between text-center">
                              <div class="comment-form">
                         <div class="form-group">
-                            <button type="submit" class="button button-contactForm">Start designing my trip</button>
+                            <a href="{% url 'Billing' paquete.slug %}" class="button button-contactForm">Start designing my trip</a>
                         </div>
                     </form>
                     </div>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                             </div>
-                           <button type="submit" class="button button-contactForm">Start designing my trip</button>
+                           <a href="{% url 'Billing' paquete.slug %}" class="button button-contactForm">Start designing my trip</a>
                         </form>
                     </aside>
                 </div>
