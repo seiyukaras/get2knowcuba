@@ -51,7 +51,10 @@
                     <div class="d-sm-flex justify-content-between text-center">
                              <div class="comment-form">
                         <div class="form-group">
-                            <a href="{% url 'Billing' paquete.slug %}" class="button button-contactForm">Start designing my trip</a>
+                            <form method="post" action="{% url 'Billing' %}">{% csrf_token %}
+                                <input hidden="" type="text" name="paquete" value="{{ paquete.slug }}">
+                                <input type="submit" class="button button-contactForm" value="Start designing my trip">
+                            </form>
                         </div>
                     </form>
                     </div>
@@ -93,7 +96,10 @@
                             </div>
                         </div>
                             </div>
-                           <a href="{% url 'Billing' paquete.slug %}" class="button button-contactForm">Start designing my trip</a>
+                            <form method="post" action="{% url 'Billing' %}">{% csrf_token %}
+                                <input hidden="" type="text" name="paquete" value="{{ paquete.slug }}">
+                                <input type="submit" class="button button-contactForm" value="Start designing my trip">
+                            </form>
                         </form>
                     </aside>
                 </div>

@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import billing
 
 urlpatterns = [
-    path('/<slug:slug>', views.billing, name="Billing"),
+    path('', billing.as_view(), name="Billing"),
 ]

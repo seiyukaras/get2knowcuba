@@ -6,8 +6,8 @@
     <body  class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--fixed kt-page--loading"  >
 	<div class="kt-grid kt-grid--hor kt-grid--root">
 		<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
-<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
-											
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">	
+					
 	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 		<div class="kt-portlet">
 	<div class="kt-portlet__body kt-portlet__body--fit">
@@ -31,77 +31,71 @@
 			</div>
 			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v1__wrapper">
 				<!--begin: Form Wizard Form-->
-				<form class="kt-form" id="kt_form">
+				<form method="post" class="kt-form" id="kt_form">{% csrf_token %}
 					<div class="text-center">
-					<h1>{{paquete}}</h1>
+						<h1>{{paquete}}</h1>
+						<input type="text" hidden="" name="titulo" value="{{ paquete }}">
 					</div>
 					<!--begin: Form Wizard Step 1-->
 					<div class="kt-wizard-v1__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
 						<div class="kt-heading kt-heading--md">¿Con quién viajas?</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v1__form">
-							<div class="row">
+								<div class="row">
 									<div class="col-xl-6">
 										<div class="kt-radio-list">
-							<label class="kt-radio">
-								<input type="radio" checked="checked" name="radio5"> Solo /sola
-								<span></span>
-							</label>
-							<label class="kt-radio">
-								<input type="radio" checked="checked" name="radio5"> En pareja
-								<span></span>
-							</label>
-							<label class="kt-radio">
-								<input type="radio" checked="checked" name="radio5">En familia
-								<span></span>
-							</label>
-						
-						</div>
+											<select class="form-control" name="compania">
+											{% for option in form.compania %}
+												{% if not forloop.first %}
+													{{ option }}
+												{% endif %}
+											{% endfor %}
+											</select>
+										</div>
 									</div>
 									<div class="col-xl-6">
 										<div class="form-group form-group-last row">
-									<div class="col-lg-4 form-group-sub">
-									<label class="form-control-label">Adultos:</label>
-									<select class="form-control" name="adultos">
-										<option value="">Select</option>
-										<option value="01">01</option>
-										<option value="02">02</option>
-										<option value="03">03</option>
-										<option value="04">04</option>
-										<option value="05">05</option>
-										<option value="06">06</option>
-										<option value="07">07</option>
-										<option value="08">08</option>
-										<option value="09">09</option>
-										<option value="10">10</option>
-									</select>
-								</div>
-								<div class="col-lg-4 form-group-sub">
-									<label class="form-control-label">Niños:</label>
-									<select class="form-control" name="ninos">
-										<option value="">Select</option>
-										<option value="01">01</option>
-										<option value="02">02</option>
-										<option value="03">03</option>
-										<option value="04">04</option>
-										<option value="05">05</option>
-										<option value="06">06</option>
-										<option value="07">07</option>
-										<option value="08">08</option>
-										<option value="09">09</option>
-										<option value="10">10</option>
-									</select>
-								</div>
-								</div>
+											<div class="col-lg-4 form-group-sub">
+												<label class="form-control-label">Adultos:</label>
+												<select class="form-control" name="adultos">
+													<option value="">Select</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10">10</option>
+												</select>
+											</div>
+											<div class="col-lg-4 form-group-sub">
+												<label class="form-control-label">Niños:</label>
+												<select class="form-control" name="ninos">
+													<option value="">Select</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10">10</option>
+												</select>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xl-6">
-													<div class="alert alert-success" role="alert">
-						  	<strong>ATENCIÓN:!</strong> El presupuesto mínimo que podemos ofrecerte para 8 días es de 500 euros por persona sin vuelos internacionales. .
-						</div>
+										<div class="alert alert-success" role="alert">
+							  			<strong>ATENCIÓN:!</strong> El presupuesto mínimo que podemos ofrecerte para 8 días es de 500 euros por persona sin vuelos internacionales. .
+										</div>
 									</div>
-							
 								</div>
 							</div>
 						</div>
@@ -110,28 +104,25 @@
 
 					<!--begin: Form Wizard Step 2-->
 					<div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Describe el proyecto tal y como te lo imaginas</div>
+						<div class="kt-heading kt-heading--md">
+							Describe el proyecto tal y como te lo imaginas
+						</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v1__form">
-						<div class="kt-wizard-v1__form-label">Alojamiento</div>
+								<div class="kt-wizard-v1__form-label">Alojamiento</div>
 								<div class="row">
-								<div class="kt-radio-list">
-								<label class="kt-radio">
-								<input type="radio" checked="checked" name="radio5"> Casa local
-								<span></span>
-							</label>
-							<label class="kt-radio">
-								<input type="radio" checked="checked" name="radio5"> Hostales
-								<span></span>
-							</label>
-							<label class="kt-radio">
-								<input type="radio" checked="checked" name="radio5">Hotel
-								<span></span>
-							</label>
-							</div>
+									<div class="kt-radio-list">
+										<select class="form-control" name="alojamiento">
+										{% for option in form.alojamiento %}
+											{% if not forloop.first %}
+												{{ option }}
+											{% endif %}
+										{% endfor %}
+										</select>
+									</div>
 								</div>
 								<label for="exampleTextarea">Describe como deseas que sea tu viaje (opcional)</label>
-						<textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+								{{ form.text }}
 							</div>
 						</div>
 					</div>
@@ -146,7 +137,7 @@
 								<label>Indica tu correo electrónico</label>
 						<div class="input-group">
 							<div class="input-group-prepend"><span class="input-group-text">@</span></div>
-							<input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+							{{ form.email }}
 						</div>
 								</div>
 								<div class="form-group">
@@ -160,9 +151,7 @@
 
 					<!--begin: Form Actions -->
 					<div class="kt-form__actions">
-					<button class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
-							Submit
-						</button>
+					<input type="submit" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit"	value="Submit">
 						<button class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
 							Next Step
 						</button>
