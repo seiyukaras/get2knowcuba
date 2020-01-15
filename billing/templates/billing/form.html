@@ -34,7 +34,7 @@
 				<form method="post" class="kt-form" id="kt_form">{% csrf_token %}
 					<div class="text-center">
 						<h1>{{paquete}}</h1>
-						<input type="text" hidden="" name="titulo" value="{{ paquete }}">
+						<input type="text" hidden="" name="paquete" value="{{ paquete.slug }}">
 					</div>
 					<!--begin: Form Wizard Step 1-->
 					<div class="kt-wizard-v1__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
