@@ -21,7 +21,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('pre/', include('billing.urls')),
     path('about/', include('about.urls')),
-    path('destinations/', include('destinos.urls')),
+    path('destinations/', include('destinos.urls'), name='destinos'),
     #Url de Get2knowcuba
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),

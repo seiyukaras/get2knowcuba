@@ -1,5 +1,7 @@
 "use strict";
 
+$('#info').hide();
+
 // Class definition
 var KTWizard1 = function () {
 	// Base elements
@@ -7,7 +9,7 @@ var KTWizard1 = function () {
 	var formEl;
 	var validator;
 	var wizard;
-	
+
 	// Private functions
 	var initWizard = function () {
 		// Initialize form wizard
@@ -31,10 +33,10 @@ var KTWizard1 = function () {
 		// Change event
 		wizard.on('change', function(wizard) {
 			setTimeout(function() {
-				KTUtil.scrollTop();	
+				KTUtil.scrollTop();
 			}, 500);
 		});
-	}	
+	};
 
 	var initValidation = function() {
 		validator = formEl.validate({
@@ -42,23 +44,23 @@ var KTWizard1 = function () {
 			ignore: ":hidden",
 
 			// Validation rules
-			rules: {	
+			rules: {
 				//= Step 1
 				address1: {
-					required: true 
+					required: true
 				},
 				postcode: {
 					required: true
-				},	   
+				},
 				city: {
 					required: true
-				},	 
+				},
 				state: {
 					required: true
-				},	 
+				},
 				country: {
 					required: true
-				},	 
+				},
 
 				//= Step 2
 				package: {
@@ -66,16 +68,16 @@ var KTWizard1 = function () {
 				},
 				weight: {
 					required: true
-				},	
+				},
 				width: {
 					required: true
 				},
 				height: {
 					required: true
-				},	
+				},
 				length: {
 					required: true
-				},			   
+				},
 
 				//= Step 3
 				delivery: {
@@ -83,36 +85,36 @@ var KTWizard1 = function () {
 				},
 				packaging: {
 					required: true
-				},	
+				},
 				preferreddelivery: {
 					required: true
-				},	
+				},
 
 				//= Step 4
 				locaddress1: {
-					required: true 
+					required: true
 				},
 				locpostcode: {
 					required: true
-				},	   
+				},
 				loccity: {
 					required: true
-				},	 
+				},
 				locstate: {
 					required: true
-				},	 
+				},
 				loccountry: {
 					required: true
-				},	
+				},
 			},
-			
-			// Display error  
-			invalidHandler: function(event, validator) {	 
+
+			// Display error
+			invalidHandler: function(event, validator) {
 				KTUtil.scrollTop();
 
 				swal.fire({
-					"title": "", 
-					"text": "There are some errors in your submission. Please correct them.", 
+					"title": "",
+					"text": "There are some errors in your submission. Please correct them.",
 					"type": "error",
 					"confirmButtonClass": "btn btn-secondary"
 				});
@@ -120,9 +122,9 @@ var KTWizard1 = function () {
 
 			// Submit valid form
 			submitHandler: function (form) {
-				
+
 			}
-		});   
+		});
 	}
 
 	var initSubmit = function() {
@@ -138,16 +140,20 @@ var KTWizard1 = function () {
 
 				// See: http://malsup.com/jquery/form/#ajaxSubmit
 				formEl.ajaxSubmit({
-					success: function() {
+					success: function(response) {
 						KTApp.unprogress(btn);
 						//KTApp.unblock(formEl);
 
-						swal.fire({
-							"title": "", 
-							"text": "The application has been successfully submitted!", 
-							"type": "success",
-							"confirmButtonClass": "btn btn-secondary"
-						});
+						// swal.fire({
+						// 	"title": "",
+						// 	"text": "The application has been successfully submitted!",
+						// 	"type": "success",
+						// 	"confirmButtonClass": "btn btn-secondary"
+						// });
+
+						$('#kt_form').hide();
+						$('#mensaje').text(response.mensaje);
+						$('#info').show();
 					}
 				});
 			}
@@ -160,13 +166,13 @@ var KTWizard1 = function () {
 			wizardEl = KTUtil.get('kt_wizard_v1');
 			formEl = $('#kt_form');
 
-			initWizard(); 
+			initWizard();
 			initValidation();
 			initSubmit();
 		}
 	};
 }();
 
-jQuery(document).ready(function() {	
+jQuery(document).ready(function() {
 	KTWizard1.init();
 });
