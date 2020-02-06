@@ -153,6 +153,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
 DEFAULT_FROM_EMAIL = 'info@get2knowcuba.ca'
 
 ADMINS = [('Admin', 'info@get2knowcuba.ca')]
