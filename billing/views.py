@@ -70,15 +70,17 @@ class billing(CreateView):
         # por defecto el remitente es settings.DEFAULT_FROM_EMAIL
         destinatarios = settings.ADMINS.append((billing.email, billing.email))
         message = EmailMessage(
-            subject='Presupuesto de Get2KnowCuba',
-            body='\
+            'Presupuesto de Get2KnowCuba',
+            '\
                 <b>Gracias por usar los servicios de Get2KnowCuba</b><br/> \
                 Por favor chequee el fichero adjunto con los detalles de su presupuesto.<br/><br/> \
                 Atentamente, equipo de Get2KnowCuba. \
             ',
-            to=destinatarios
+            settings.DEFAULT_FROM_EMAIL,
+            [billing.email,]
+
         )
         message.attach_file(filepath)
         message.content_subtype = "html"
-        message.send()
+        message.send(fail_silently=True)
         # para ver los errores en consola usar message.send(fail_silently=True)

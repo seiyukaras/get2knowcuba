@@ -153,8 +153,18 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+'''
+# Email config
+# Servidor local de pruebas
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
 DEFAULT_FROM_EMAIL = 'info@get2knowcuba.ca'
+'''
 
-ADMINS = [('Admin', 'info@get2knowcuba.ca')]
+# ========================================================================== #
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "cuenta@gmail.com"
+EMAIL_HOST_PASSWORD = 'clave'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'info@get2knowcuba.ca'
