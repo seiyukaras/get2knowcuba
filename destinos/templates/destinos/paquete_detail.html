@@ -24,11 +24,9 @@
                     <h3 class="mb-20 title_color">Incluye</h3>
                     <div class="">
                         <ul class="unordered-list">
-                            <li>Fta Keys</li>
-                            <li>For Women Only Your Computer Usage</li>
-                              <li>Dealing With Technical Support 10 Useful Tips</li>
-                            <li>Make Myspace Your Best Designed Space</li>
-                            <li>Cleaning And Organizing Your Computer</li>
+                            {% for servicio in paquete.servicios.all %}
+                                <li>{{servicio}}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -36,11 +34,9 @@
                     <h3 class="mb-20 title_color">No Incluye</h3>
                     <div class="">
                         <ul class="unordered-list">
-                            <li>Fta Keys</li>
-                            <li>For Women Only Your Computer Usage</li>
-                              <li>Dealing With Technical Support 10 Useful Tips</li>
-                            <li>Make Myspace Your Best Designed Space</li>
-                            <li>Cleaning And Organizing Your Computer</li>
+                            {% for servicio in paquete.noservicios.all %}
+                                <li>{{servicio}}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -89,10 +85,18 @@
                         </div>
                         <div class="media post_item">
                             <div class="media-body">
-
                                     <h4>Included services</h4>
+                                    {% if paquete.guia %}
+                                        <p>Guide</p>
+                                    {% endif %}
 
-                                <p>Guide<br>Driver<br>Airport transfer</p>
+                                    {% if paquete.chofer %}
+                                        <p>Driver</p>
+                                    {% endif %}
+                                    
+                                    {% if paquete.traslado %}
+                                        <p>Airport transfer</p>
+                                    {% endif %}
                             </div>
                         </div>
                             </div>
