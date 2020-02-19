@@ -13,7 +13,7 @@ class billing(models.Model):
     text = models.TextField()
     email = models.EmailField(blank=True, null=True)
     titulo = models.ForeignKey(Paquete, on_delete=models.CASCADE)
-    comprobante_presupuesto = models.CharField(max_length=50, blank=True, null=True)
+    comprobante_presupuesto = models.FileField(upload_to='billing')
 
     class Meta:
         ordering = ['titulo']

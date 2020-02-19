@@ -4,8 +4,10 @@ from .models import billing
 from .forms import BillingForm
 from django.http import JsonResponse
 from django.conf import settings
-import pdfkit
 from django.core.mail import EmailMessage
+
+from django.template.loader import get_template
+import pdfkit
 
 # Create your views here.
 
@@ -44,6 +46,11 @@ class billing(CreateView):
         texto = billing.text
         paquete = billing.titulo
 
+        template = get_template("billing/invoice.html")
+        print(template)
+        html = template.render({'paquete': paquete,'alojamiento':alojamiento})
+        
+        # Esto es eliminable
         presupuesto = '''
             <p><b>Gracias por usar los servicios de Get2KnowCuba!</b></p>
             <br/>
@@ -55,13 +62,17 @@ class billing(CreateView):
             <p>Ni&ntilde;os: {4}</p>
             <p>Texto: {5}</p>
         '''.format(paquete, compania, alojamiento, adultos, ninos, texto)
+        # hasta aqui
 
+        options = {
+            'quiet': '',
+            'page-size': 'Letter',
+            'encoding': "UTF-8",
+        }
         pdfkit.from_string(
-            presupuesto,
+            html,
             filepath,
-            options={
-                'quiet': ''
-            }
+            options
         )
 
         billing.comprobante_presupuesto = filename
