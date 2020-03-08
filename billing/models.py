@@ -13,6 +13,7 @@ class billing(models.Model):
     text = models.TextField()
     email = models.EmailField(blank=True, null=True)
     titulo = models.ForeignKey(Paquete, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha Creacion")
     comprobante_presupuesto = models.FileField(upload_to='billing')
 
     class Meta:

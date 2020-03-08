@@ -111,9 +111,8 @@
                             </td>
                             
                             <td>
-                                Invoice #: 123<br>
-                                Created: January 1, 2015<br>
-                                Due: February 1, 2015
+                                Invoice #: {{ identificacion }}<br>
+                                Created: {{ creado|date:"D d M Y" }}<br>
                             </td>
                         </tr>
                     </table>
@@ -142,69 +141,43 @@
             
                     
             <tr class="heading">
-                <td>
+                <td colspan="2">
                     Below we show the details of your budget:
                 </td>
-                
-                <td>
-                    
-                </td>
             </tr>
             
             <tr class="item">
-                <td>
-                    {{ paquete }}
-                </td>
-                
-                <td>
-                   
-                </td>
+                <td colspan="2">{{ paquete }}</td>
             </tr>
-            
             <tr class="item">
-                <td>
-                    Company type:
-                </td>
-                
-                <td>
-                    Familia
-                </td>
+                <td>Type of accommodation:</td>
+                <td>{{ alojamiento }}</td>
             </tr>
-              <tr class="item">
-                <td>
-                    Type of accommodation:
-                </td>
-                
-                <td>
-                    {{ alojamiento }}
-                </td>
+            <tr class="item">
+                <td>Company type:</td>
+                <td>{{ compania }}</td>
             </tr>
-			      <tr class="item">
-                <td>
-                    Children:
-                </td>
-                
-                <td>
-                    3
-                </td>
+            {% if compania == 'Familia' %}
+            <tr class="item">
+                <td>Adults:</td>
+                <td>{{ adultos }}</td>
+            </tr>
+		    <tr class="item">
+                <td>Children:</td>
+                <td>{{ ninos }}</td>
+            </tr>
+            {% endif %}
+            <tr class="item">
+                <td>Description:</td>
+                <td>{{ texto }}</td>
             </tr>
             <tr class="item last">
-                <td>
-                    Tipo de alojamiento:
-                </td>
-                
-                <td>
-                     Casa local
-                </td>
+                <td>Por persona:</td>
+                <td>{{ por_persona }}</td>
             </tr>
-            
-            
             <tr class="total">
                 <td></td>
-                
-                <td>
-                   Total: $385.00
-                </td>
+                <td>Total: ${{ total }}</td>
             </tr>
         </table>
     </div>

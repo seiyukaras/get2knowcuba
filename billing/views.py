@@ -39,31 +39,35 @@ class billing(CreateView):
     def save_and_send_email(self, billing):
         filename = 'billing_' + str(billing.pk) + '_' + self.paquete + '.pdf'
         filepath = settings.MEDIA_ROOT + '/' + filename
+        identificacion = billing.id
         compania = [c[1] for c in billing.tipo_compania if c[0] == billing.compania][0]
         adultos = billing.adultos if billing.adultos is not None else 0
         ninos = billing.ninos if billing.ninos is not None else 0
         alojamiento = [a[1] for a in billing.tipo_alojamiento if a[0] == billing.alojamiento][0]
         texto = billing.text
         paquete = billing.titulo
+        creado = billing.created
+        por_persona = billing.titulo.precio
+        descuento = por_persona * 0.05
+
+        if adultos > 2 or ninos > 0:
+            # Descuento solo para mas de 3 adultos
+            por_persona = por_persona - (descuento*adultos)
+            # Descuento por niño
+            por_persona = por_persona - (descuento*ninos)
+            # Multiplicamos la suma de las personas por el valor unitario
+            total = (adultos + ninos) * por_persona
+        else:
+            # Minimo es de dos adultos
+            total = (por_persona * 2)
+        
 
         template = get_template("billing/invoice.html")
-        print(template)
-        html = template.render({'paquete': paquete,'alojamiento':alojamiento})
+        html = template.render({'compania': compania,'adultos':adultos,
+            'ninos':ninos, 'alojamiento':alojamiento, 'texto':texto,
+            'paquete':paquete,'creado':creado, 'identificacion':identificacion,
+            'por_persona':por_persona, 'total':total})
         
-        # Esto es eliminable
-        presupuesto = '''
-            <p><b>Gracias por usar los servicios de Get2KnowCuba!</b></p>
-            <br/>
-            <p>A continuaci&oacute;n mostramos los detalles de su presupuesto:</p>
-            <p>Paquete: {0}</p>
-            <p>Tipo de compa&ntilde;ia: {1}</p>
-            <p>Tipo de alojamiento: {2}</p>
-            <p>Adultos: {3}</p>
-            <p>Ni&ntilde;os: {4}</p>
-            <p>Texto: {5}</p>
-        '''.format(paquete, compania, alojamiento, adultos, ninos, texto)
-        # hasta aqui
-
         options = {
             'quiet': '',
             'page-size': 'Letter',
